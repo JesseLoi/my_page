@@ -1,2 +1,2 @@
-# my_page
-My portfolio
+# Jesse Loi's Website
+Find my personal projects here.
