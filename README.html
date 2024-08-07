@@ -1,38 +1,101 @@
-<html>
-    <body>
-     <main>
- <h4>
-   Comments on the Acquisition of the Postulates
-   
- <figure>
-   <blockquote>
-  <p>As Friedman has shown, it must be called on to guarantee that we can indeed perform the steps of the constructions involved in Euclidian proofs (for example, extending the line segment by the second Euclidian postulate), that is, to perform the role that existence assumptions play in the kind of axiomatization unavailable to Kant. But to understand what this means we have to ask what it can mean to guarantee that we can perform these steps. It is not enough merely to guarantee that the step is in accordance with the postulates, but the postulates themselves have to be 'guaranteed/ 1 take this to be the point of the following passage from the Observation on the Second Antinomy (A439/B46
-     </p>
-     <figcaption>
-       Emily Carson pg 510
-       <cite>Kant on Intuition and Geometry
-         
-       </cite>
-     </figcaption>
-   </blockquote>
-     </figure>
-   </h4>
-         
-         <h4>
-   Comments on the Acquisition of the Postulates
-   
- <figure>
-   <blockquote>
-  <p>As Friedman has shown, it must be called on to guarantee that we can indeed perform the steps of the constructions involved in Euclidian proofs (for example, extending the line segment by the second Euclidian postulate), that is, to perform the role that existence assumptions play in the kind of axiomatization unavailable to Kant. But to understand what this means we have to ask what it can mean to guarantee that we can perform these steps. It is not enough merely to guarantee that the step is in accordance with the postulates, but the postulates themselves have to be 'guaranteed/ 1 take this to be the point of the following passage from the Observation on the Second Antinomy (A439/B46
-     </p>
-     <figcaption>
-       Emily Carson pg 510
-       <cite>Kant on Intuition and Geometry
-         
-       </cite>
-     </figcaption>
-   </blockquote>
-     </figure>
-   </h4>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elec</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+       header {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            margin-bottom: 2rem; /* Add margin-bottom to header */
+        }
+        nav {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #444;
+        }
+        nav a {
+            color: white;
+            display: inline-block;
+            padding: 1rem;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+        main {
+            padding: 2rem;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Linear Regression: Electricity Load in New Hampshire</h1>
+    </header>
+    <nav>
+        <a href="#section1">Problem Statement</a>
+        <a href="#section2">Methodology</a>
+        <a href="#section3">Interesting Results</a>
+    </nav>
+    <main>
+         <div class="center-image">
+        <img src="https://raw.githubusercontent.com/JesseLoi/my_page/main/NH_City.jpg"/>
+         </div>
+        
+        <section id="section1">
+            <h2>Problem Statement</h2>
+            <p>Given climate reports such as temperature and humidity, can we predict the electricty load, or how much electricity is used in the city of New Hampshire? We will see which regression methods or worth trying and which features contribute most to the phenomenon. At a first glance, we might hypothesize that temperature and time of day might increase electricity load. After all, people tend to use air conditioning in high temperature and start their personal devices as soon as they get home from work (usually 5PM).
+                We'll use cross validation to check our guesses and compare our linear regression. More importantly, our discoveries will help guage proper factors in determining electricity allocation for electrical and civil engineers and when to buy and sell electricity for personal traders. After all, trading electricity can serve to be quite a lucrative occupation.</p>
+            <p>As for technologies we'll use, we'll make use of Python's many machine learning libraries for regression.</p>
+       <div class="center-image">
+    <img src="https://raw.githubusercontent.com/JesseLoi/my_page/main/Elec_Sum_stats.png" alt="Description of image" />
+</div>
+        </section>
+        <section id="section2">
+            <h2>Methodology</h2>
+            <p>Find the data at https://www.iso-ne.com/isoexpress/web/reports/load-and-demand/-/tree/whlsecost-hourly-newhampshire</p>
+            <p>We'll start with some exploratory data analysis to see some initial trends in the data. We have the following interesting features to inspect: date, time, temperature, and their corresponding transformations.</p>
 
+            <p>Date: naturally, the date, particularly the weekend/weekday distinction, should be a contributor to electricity load. For example, lots of businesses won't be operating during the weekend, lowering power usage.
+             </p>
+
+            <p></p>
+            <div class="center-image">
+            <img src="https://raw.githubusercontent.com/JesseLoi/my_page/main/Plots.png"/>
+            </div>
+
+
+            
+        </section>
+        <section id="section3">
+            <h2>Interesting Results</h2>
+            <p>Unsurprisingly, it was a "black box" regression method, the Random Forest method, which performed best. Minimizing mean-squared error the most among the different methodologies.</p>
+            <p><b>However</b>, not all is lost. Our linear regression, with its many different features, arrived surprisingly close  to the mean-squared error. Even better, such results performed significantly better than other linear regressions that used far more features. This is keeping in mind that the phenomena we were attempting to predict was a non-linear phenomena (electricity usage).</p>
+            <p>The lesson to take away here is that, with enough crafty transformations, we can linearize phenomena that is usually non-linear. While it might be better at regression than methods such as random forests, this allows us to have some more oversight over the regression formula than we would with a machine-learning method such as random forest.</p>
+            <p>Of course, this isn't anything too new. This was already discussed in Tim Hesterberg's work on regression in electricity load[A REGRESSION-BASED APPROACH TO SHORT-TERM SYSTEM LOAD FORECASTING 1990]</p>
+        </section>
+        
     </main>
+    <footer>
+        &copy; 2024 Jesse Loi
+    </footer>
+</body>
+</html>
