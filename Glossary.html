@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glossary</title>
     <style>
+        .sort-button, .randomize-button {
+            padding: 5px 10px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .sort-button:hover, .randomize-button:hover {
+            background-color: #0056b3;
+        }
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -77,6 +88,7 @@
     </header>
     <div class="glossary-container">
         <button class="sort-button" onclick="sortGlossary()">Sort Alphabetically</button>
+         <button class="randomize-button" onclick="randomizeGlossary()">Randomize</button>
         <div class="glossary" id="glossary">
             <div class="glossary-entry">
                 <h3>JavaScript</h3>
@@ -136,6 +148,20 @@
             glossary.innerHTML = '';
             entries.forEach(entry => glossary.appendChild(entry));
         }
+
+        function randomizeGlossary() {
+            const glossary = document.getElementById('glossary');
+            const entries = Array.from(glossary.getElementsByClassName('glossary-entry'));
+
+            for (let i = entries.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [entries[i], entries[j]] = [entries[j], entries[i]];
+            }
+
+            glossary.innerHTML = '';
+            entries.forEach(entry => glossary.appendChild(entry));
+        }
+    </script>
     </script>
     <footer>
         &copy; 2024 Jesse Loi
