@@ -81,6 +81,10 @@
         <section id="section2">
             <h2>Methodology</h2>
             <p>Find the data at https://www.iso-ne.com/isoexpress/web/reports/load-and-demand/-/tree/whlsecost-hourly-newhampshire</p>
+            
+            <p>The first question to answer is how we will be evaluating our models. We could, for instance, simply wait for the data to come in. However, this takes too long. Instead, with our limited data, we will attempt cross-validation. Let's train our algorithms on all but the last month and we will attempt to predict the last month (December 2022). This is 
+            so that we aren't training our data on our test data.</p>
+            
             <p>We'll start with some exploratory data analysis to see some initial trends in the data. We have the following interesting features to inspect: date, time, temperature, and their corresponding transformations.</p>
 
             <p>Date: naturally, the date, particularly the weekend/weekday distinction, should be a contributor to electricity load. For example, lots of businesses won't be operating during the weekend, lowering power usage.
@@ -94,8 +98,9 @@
             <p>We'll now consider machine learning algorithms other than linear </p>
             <h2>Bagging</h2>
             <p>Let's try bagging (bootstrap aggregatting), which is a process where we sample several times from the table to create different models. We'll then average (or aggregate) these models together.</p>
-            
+            <p></p>
             <h2>K-Nearest Neighbor</h2>
+            <p>While increasing our group size for the nearest neighbor.</p>
             <h2>Random Forest</h2>
 
             <p>With this selection of black-box algorithms, it might be tough for our linear regression to keep up. Let's see what we can do.</p>
