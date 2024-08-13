@@ -15,7 +15,7 @@
             color: white;
             padding: 1rem;
             text-align: center;
-            margin-bottom: 2rem; /* Add margin-bottom to header */
+            margin-bottom: 1rem; /* Add margin-bottom to header */
         }
         nav {
             margin: 0;
@@ -92,10 +92,27 @@
             
             <p>We'll start with some exploratory data analysis to see some initial trends in the data. We have the following interesting features to inspect: date, time, temperature, and their corresponding transformations.</p>
 
+            <p>Temperature</p>
+            <p>I take temperature to be one of the main contributing factors to increase in load. After all, high temperatures lead users to turn on air conditioning and often cause machines to overheat, draining more electricity.</p>
+
             <p>Date: naturally, the date, particularly the weekend/weekday distinction, should be a contributor to electricity load. For example, lots of businesses won't be operating during the weekend, lowering power usage.
              </p>
-            <img src="https://raw.githubusercontent.com/JesseLoi/my_page/main/Plots.png" class="center"/>
-            <p></p>
+            <img src="https://raw.githubusercontent.com/JesseLoi/my_page/master/LoadVSTemp_Jul_Apr_Dec.png" class="center"/>
+            <p>Check this later for error</p>
+            <p>We might expect, for example, summer</p>
+            
+            <p>Weekend/weekday</p>
+            <img src="https://raw.githubusercontent.com/JesseLoi/my_page/master/Weekend_Weekday_Temp.png" class="center"/>
+            
+            
+            <p>Time of day</p>
+            <img src="https://raw.githubusercontent.com/JesseLoi/my_page/master/Time_Series_Load_HR.png" class="center"/>
+
+            <h2>Holidays and the Flight Problem</h2>
+            <p>There is one more factor worth considering, and that is whether or not a day is a holiday. This problably raises the largest discussion.</p>
+            <p>First, because there is a holiday, would this lead to an increase or decrease in load? After all, most holidays encourage workers to stay home and celebrate with families. This would lead to less buildings in use due to workers not coming in and families visiting each other. On the other hand, holidays also encourage celebration, often with decorations which expend light.</p>
+
+            
             <div class="center-image">
             <img src="https://raw.githubusercontent.com/JesseLoi/my_page/main/Plots.png" class="center"/>
             </div>
