@@ -84,18 +84,23 @@
             
             <p>The first question to answer is how we will be evaluating our models. We could, for instance, simply wait for the data to come in. However, this takes too long. Instead, with our limited data, we will attempt cross-validation. Let's train our algorithms on all but the last month and we will attempt to predict the last month (December 2022). This is 
             so that we aren't training our data on our test data.</p>
+            <p>The second question here is WHY we are testing our residuals against our predicted values. This is to check for any patterns in the data. After all, it could very well be the case that the sum of our residuals looks rather reasonable, but the residuals themselves are not random. This would help us locate some bias in the data that we were overlooking. We want randomness in the residuals, so they are nothing more than noise.</p>
+            <p></p>
+            <h2>Exploratory Data Analysis</h2>
+
+
             
             <p>We'll start with some exploratory data analysis to see some initial trends in the data. We have the following interesting features to inspect: date, time, temperature, and their corresponding transformations.</p>
 
             <p>Date: naturally, the date, particularly the weekend/weekday distinction, should be a contributor to electricity load. For example, lots of businesses won't be operating during the weekend, lowering power usage.
              </p>
-
+            <img src="https://raw.githubusercontent.com/JesseLoi/my_page/main/Plots.png" class="center"/>
             <p></p>
             <div class="center-image">
             <img src="https://raw.githubusercontent.com/JesseLoi/my_page/main/Plots.png" class="center"/>
             </div>
 
-            <p>We'll now consider machine learning algorithms other than linear </p>
+            <p>We'll now consider machine learning algorithms other than linear regression.</p>
             <h2>Bagging</h2>
             <p>Let's try bagging (bootstrap aggregatting), which is a process where we sample several times from the table to create different models. We'll then average (or aggregate) these models together.</p>
             <img src="https://raw.githubusercontent.com/JesseLoi/my_page/master/Bagging_Residual_Plot.png" class="center"/>
@@ -115,6 +120,9 @@
 <section id="section1">
             <h2>Linearizing the Non-Linear</h2>
     <p>From our data analysis above, we have one fundamental problem. That is </p>
+    <img src="https://raw.githubusercontent.com/JesseLoi/my_page/master/Linear_Regression_Residual_Plot_.png" class="center"/>
+
+
 </section>
     
         <section id="section3">
