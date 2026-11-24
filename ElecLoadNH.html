@@ -15,7 +15,7 @@
             color: white;
             padding: 1rem;
             text-align: center;
-            margin-bottom: 2rem; /* Add margin-bottom to header */
+            margin-bottom: 1rem; /* Add margin-bottom to header */
         }
         nav {
             margin: 0;
@@ -44,6 +44,12 @@
             bottom: 0;
             width: 100%;
         }
+        .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
     </style>
 </head>
 <body>
@@ -53,12 +59,14 @@
     <nav>
         <a href="#section1">Problem Statement</a>
         <a href="#section2">Methodology</a>
-        <a href="#section3">Interesting Results</a>
+        <a href="#section3">Linearizing the Non-Linear</a>
+        <a href="#section4">Interesting Results</a>
     </nav>
     <main>
          <div class="center-image">
-        <img src="https://raw.githubusercontent.com/JesseLoi/my_page/main/NH_City.jpg"/>
-         </div>
+            <img src="https://raw.githubusercontent.com/JesseLoi/my_page/main/NH_City.jpg" alt="NH City" class="center"/>
+        </div>
+    
         
         <section id="section1">
             <h2>Problem Statement</h2>
@@ -66,26 +74,74 @@
                 We'll use cross validation to check our guesses and compare our linear regression. More importantly, our discoveries will help guage proper factors in determining electricity allocation for electrical and civil engineers and when to buy and sell electricity for personal traders. After all, trading electricity can serve to be quite a lucrative occupation.</p>
             <p>As for technologies we'll use, we'll make use of Python's many machine learning libraries for regression.</p>
        <div class="center-image">
-    <img src="https://raw.githubusercontent.com/JesseLoi/my_page/main/Elec_Sum_stats.png" alt="Description of image" />
+    <img src="https://raw.githubusercontent.com/JesseLoi/my_page/main/Elec_Sum_stats.png" alt="Description of image" class="center"/>
 </div>
             <p>Let "RT_Demand" stand for the electricity load, what we want to predict.</p>
         </section>
         <section id="section2">
             <h2>Methodology</h2>
             <p>Find the data at https://www.iso-ne.com/isoexpress/web/reports/load-and-demand/-/tree/whlsecost-hourly-newhampshire</p>
-            <p>We'll start with some exploratory data analysis to see some initial trends in the data. We have the following interesting features to inspect: date, time, temperature, and their corresponding transformations.</p>
-
-            <p>Date: naturally, the date, particularly the weekend/weekday distinction, should be a contributor to electricity load. For example, lots of businesses won't be operating during the weekend, lowering power usage.
-             </p>
-
+            
+            <p>The first question to answer is how we will be evaluating our models. We could, for instance, simply wait for the data to come in. However, this takes too long. Instead, with our limited data, we will attempt cross-validation. Let's train our algorithms on all but the last month and we will attempt to predict the last month (December 2022). This is 
+            so that we aren't training our data on our test data.</p>
+            <p>The second question here is WHY we are testing our residuals against our predicted values. This is to check for any patterns in the data. After all, it could very well be the case that the sum of our residuals looks rather reasonable, but the residuals themselves are not random. This would help us locate some bias in the data that we were overlooking. We want randomness in the residuals, so they are nothing more than noise.</p>
             <p></p>
-            <div class="center-image">
-            <img src="https://raw.githubusercontent.com/JesseLoi/my_page/main/Plots.png"/>
-            </div>
+            <h2>Exploratory Data Analysis</h2>
 
 
             
+            <p>We'll start with some exploratory data analysis to see some initial trends in the data. We have the following interesting features to inspect: date, time, temperature, and their corresponding transformations.</p>
+
+            <p>Temperature</p>
+            <p>I take temperature to be one of the main contributing factors to increase in load. After all, high temperatures lead users to turn on air conditioning and often cause machines to overheat, draining more electricity.</p>
+
+            <p>Date: naturally, the date, particularly the weekend/weekday distinction, should be a contributor to electricity load. For example, lots of businesses won't be operating during the weekend, lowering power usage.
+             </p>
+            <img src="https://raw.githubusercontent.com/JesseLoi/my_page/master/LoadVSTemp_Jul_Apr_Dec.png" class="center"/>
+            <p>Check this later for error</p>
+            <p>We might expect, for example, summer</p>
+            
+            <p>Weekend/weekday</p>
+            <img src="https://raw.githubusercontent.com/JesseLoi/my_page/master/Weekend_Weekday_Temp.png" class="center"/>
+            
+            
+            <p>Time of day</p>
+            <img src="https://raw.githubusercontent.com/JesseLoi/my_page/master/Time_Series_Load_HR.png" class="center"/>
+
+            <h2>Holidays and the Flight Problem</h2>
+            <p>There is one more factor worth considering, and that is whether or not a day is a holiday. This problably raises the largest discussion.</p>
+            <p>First, because there is a holiday, would this lead to an increase or decrease in load? After all, most holidays encourage workers to stay home and celebrate with families. This would lead to less buildings in use due to workers not coming in and families visiting each other. On the other hand, holidays also encourage celebration, often with decorations which expend light.</p>
+
+            
+            <div class="center-image">
+            <img src="https://raw.githubusercontent.com/JesseLoi/my_page/main/Plots.png" class="center"/>
+            </div>
+
+            <p>We'll now consider machine learning algorithms other than linear regression.</p>
+            <h2>Bagging</h2>
+            <p>Let's try bagging (bootstrap aggregatting), which is a process where we sample several times from the table to create different models. We'll then average (or aggregate) these models together.</p>
+            <img src="https://raw.githubusercontent.com/JesseLoi/my_page/master/Bagging_Residual_Plot.png" class="center"/>
+            
+            <p></p>
+            <h2>K-Nearest Neighbor</h2>
+            <p>While increasing our group size for the nearest neighbor.</p>
+            <img src="https://raw.githubusercontent.com/JesseLoi/my_page/master/KNN_MSE.png" class="center"/>
+
+            <h2>Random Forest</h2>
+            
+            <img src="https://raw.githubusercontent.com/JesseLoi/my_page/master/RandomForest_residual_Plot.png" class="center"/>
+
+            <p>With this selection of black-box algorithms, it might be tough for our linear regression to keep up. Let's see what we can do.</p>
         </section>
+
+<section id="section1">
+            <h2>Linearizing the Non-Linear</h2>
+    <p>From our data analysis above, we have one fundamental problem. That is </p>
+    <img src="https://raw.githubusercontent.com/JesseLoi/my_page/master/Linear_Regression_Residual_Plot_.png" class="center"/>
+
+
+</section>
+    
         <section id="section3">
             <h2>Interesting Results</h2>
             <p>Unsurprisingly, it was a "black box" regression method, the Random Forest method, which performed best. Minimizing mean-squared error the most among the different methodologies.</p>
@@ -96,7 +152,6 @@
         
     </main>
     <footer>
-        &copy; 2024 Jesse Loi
     </footer>
 </body>
 </html>

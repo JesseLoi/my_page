@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glossary</title>
+    <style>
+        .sort-button, .randomize-button {
+            padding: 5px 10px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .sort-button:hover, .randomize-button:hover {
+            background-color: #0056b3;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+       header {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            margin-bottom: 2rem; /* Add margin-bottom to header */
+        }
+        nav {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #444;
+        }
+        nav a {
+            color: white;
+            display: inline-block;
+            padding: 1rem;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+        main {
+            padding: 2rem;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+ .glossary-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .glossary-entry {
+            margin: 10px 0;
+        }
+        .glossary-entry h3 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        .glossary-entry p {
+            margin: 5px 0 0;
+        }
+        .sort-button {
+            margin: 10px 0;
+            padding: 5px 10px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Jesse's Data Science Glossary</h1>
+    </header>
+    <div class="glossary-container">
+        <button class="sort-button" onclick="sortGlossary()">Sort Alphabetically</button>
+         <button class="randomize-button" onclick="randomizeGlossary()">Randomize</button>
+        <div class="glossary" id="glossary">
+            <div class="glossary-entry">
+                <h3>JavaScript</h3>
+                <p>A programming language commonly used in web development.</p>
+            </div>
+            <div class="glossary-entry">
+                <h3>HTML</h3>
+                <p>The standard markup language for creating web pages.</p>
+            </div>
+            <div class="glossary-entry">
+                <h3>CSS</h3>
+                <p>A style sheet language used for describing the presentation of a document written in HTML or XML.</p>
+            </div>
+             <div class="glossary-entry">
+                <h3>Random Forest</h3>
+                <p>A method of regression or classification which specializes in speed. It does this by creating a series of trees</p>
+             </div>
+             <div class="glossary-entry">
+                <h3>K-Nearest Neighbor</h3>
+                <p></p>
+             </div>
+             <div class="glossary-entry">
+                <h3>Cross-Validation</h3>
+                <p></p>
+             </div>
+             <div class="glossary-entry">
+                <h3>Web-Scraping</h3>
+                <p></p>
+             </div>
+             <div class="glossary-entry">
+                <h3>Relational Databases</h3>
+                <p></p>
+             </div>
+             <div class="glossary-entry">
+                <h3>Non-Relational Databases</h3>
+                <p></p>
+             </div>
+             <div class="glossary-entry">
+                <h3>MapReduce</h3>
+                <p></p>
+             </div>
+            <!-- Add more entries here -->
+        </div>
+    </div>
+
+    <script>
+        function sortGlossary() {
+            const glossary = document.getElementById('glossary');
+            const entries = Array.from(glossary.getElementsByClassName('glossary-entry'));
+
+            entries.sort((a, b) => {
+                const termA = a.getElementsByTagName('h3')[0].innerText.toUpperCase();
+                const termB = b.getElementsByTagName('h3')[0].innerText.toUpperCase();
+                return termA.localeCompare(termB);
+            });
+
+            glossary.innerHTML = '';
+            entries.forEach(entry => glossary.appendChild(entry));
+        }
+
+        function randomizeGlossary() {
+            const glossary = document.getElementById('glossary');
+            const entries = Array.from(glossary.getElementsByClassName('glossary-entry'));
+
+            for (let i = entries.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [entries[i], entries[j]] = [entries[j], entries[i]];
+            }
+
+            glossary.innerHTML = '';
+            entries.forEach(entry => glossary.appendChild(entry));
+        }
+    </script>
+    </script>
+    <footer>
+        &copy; 2024 Jesse Loi
+    </footer>
+</body>
+</html>
