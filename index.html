@@ -1,101 +1,202 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elec</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-       header {
-            background-color: #333;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-            margin-bottom: 2rem; /* Add margin-bottom to header */
-        }
-        nav {
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            background-color: #444;
-        }
-        nav a {
-            color: white;
-            display: inline-block;
-            padding: 1rem;
-            text-decoration: none;
-        }
-        nav a:hover {
-            background-color: #555;
-        }
-        main {
-            padding: 2rem;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f2ec">
+  <meta name="description" content="Jesse Loi's portfolio of data analysis projects, experiments, and findings.">
+  <title>Jesse Loi — Data analysis portfolio</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f4f2ec;
+      --ink: #202820;
+      --muted: #657067;
+      --line: #d8d9ce;
+      --green: #245c45;
+      --lime: #d9e86a;
+      --white: #fffefa;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    a:focus-visible { outline: 3px solid #8a9b29; outline-offset: 4px; }
+    .shell { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+    .topbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+    }
+    .wordmark { font-weight: 700; letter-spacing: -.04em; text-decoration: none; }
+    .nav { display: flex; gap: 30px; align-items: center; font-size: .88rem; }
+    .nav a { text-decoration: none; color: var(--muted); }
+    .nav a:hover { color: var(--ink); }
+    .nav .github-link { color: var(--green); font-weight: 700; }
+    .hero {
+      padding: clamp(72px, 12vw, 142px) 0 94px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 210px;
+      gap: 36px;
+      align-items: end;
+    }
+    .eyebrow, .label {
+      color: var(--green);
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    h1 {
+      max-width: 760px;
+      margin: 20px 0 22px;
+      font-family: var(--serif);
+      font-size: clamp(3.35rem, 8.5vw, 7.3rem);
+      font-weight: 400;
+      letter-spacing: -.075em;
+      line-height: .94;
+    }
+    h1 em { color: var(--green); font-weight: 400; }
+    .intro { max-width: 560px; margin: 0; color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.22rem); line-height: 1.75; }
+    .hero-note {
+      border-left: 1px solid var(--line);
+      padding: 8px 0 8px 22px;
+      color: var(--muted);
+      font-size: .85rem;
+      line-height: 1.65;
+    }
+    .hero-note strong { display: block; color: var(--ink); font-size: .95rem; margin-bottom: 6px; }
+    .work { border-top: 1px solid var(--ink); padding-top: 22px; }
+    .section-heading { display: flex; justify-content: space-between; gap: 20px; align-items: baseline; margin-bottom: 28px; }
+    .section-heading h2 { margin: 0; font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; letter-spacing: -.05em; }
+    .section-heading p { margin: 0; color: var(--muted); font-size: .88rem; }
+    .project {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 390px;
+      background: var(--green);
+      color: var(--white);
+      overflow: hidden;
+    }
+    .project-copy { padding: clamp(28px, 5vw, 58px); display: flex; flex-direction: column; align-items: flex-start; }
+    .project .label { color: var(--lime); }
+    .project h3 { margin: 22px 0 16px; max-width: 430px; font-family: var(--serif); font-size: clamp(2rem, 4.5vw, 3.65rem); font-weight: 400; letter-spacing: -.055em; line-height: 1.04; }
+    .project-copy > p { max-width: 420px; margin: 0; color: #d1ded4; line-height: 1.7; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 25px 0 32px; }
+    .tag { border: 1px solid #6b8b77; border-radius: 999px; padding: 7px 11px; color: #e0e9df; font-size: .75rem; }
+    .project-link { margin-top: auto; display: inline-flex; gap: 12px; align-items: center; padding-bottom: 5px; border-bottom: 1px solid var(--lime); color: var(--lime); font-size: .9rem; font-weight: 700; text-decoration: none; }
+    .project-link:hover { gap: 17px; }
+    .project-art { position: relative; min-height: 320px; background: #e3e7d8; overflow: hidden; }
+    .project-art img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; }
+    .project-art::after { content: ""; position: absolute; inset: 55% 0 0; background: linear-gradient(transparent, rgba(20, 45, 32, .35)); pointer-events: none; }
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 50px;
+      padding: 96px 0 105px;
+      border-bottom: 1px solid var(--line);
+    }
+    .about h2 { margin: 12px 0 0; font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; letter-spacing: -.05em; }
+    .about-copy { max-width: 590px; color: var(--muted); line-height: 1.8; }
+    .about-copy p { margin: 0 0 16px; }
+    .about-copy p:last-child { margin-bottom: 0; }
+    footer { display: flex; justify-content: space-between; gap: 20px; padding: 24px 0 30px; color: var(--muted); font-size: .82rem; }
+    footer a { color: var(--green); font-weight: 700; text-decoration: none; }
+    @media (max-width: 700px) {
+      .shell { width: min(100% - 36px, 560px); }
+      .topbar { min-height: 66px; }
+      .nav { gap: 17px; font-size: .82rem; }
+      .hero { grid-template-columns: 1fr; padding: 78px 0 72px; gap: 30px; }
+      .hero-note { max-width: 320px; }
+      .section-heading { align-items: flex-start; flex-direction: column; gap: 8px; }
+      .project { grid-template-columns: 1fr; }
+      .project-art { min-height: 270px; grid-row: 1; }
+      .about { grid-template-columns: 1fr; gap: 20px; padding: 70px 0; }
+    }
+    @media (max-width: 420px) {
+      .nav { gap: 12px; }
+      .nav a { font-size: .77rem; }
+      footer { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Linear Regression: Electricity Load in New Hampshire</h1>
-    </header>
-    <nav>
-        <a href="#section1">Problem Statement</a>
-        <a href="#section2">Methodology</a>
-        <a href="#section3">Interesting Results</a>
+  <header class="shell topbar">
+    <a class="wordmark" href="#home" aria-label="Jesse Loi, home">JL<span aria-hidden="true">.</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#work">Selected work</a>
+      <a href="#about">About</a>
+      <a class="github-link" href="https://github.com/JesseLoi">GitHub ↗</a>
     </nav>
-    <main>
-         <div class="center-image">
-        <img src="https://raw.githubusercontent.com/JesseLoi/my_page/main/NH_City.jpg"/>
-         </div>
-        
-        <section id="section1">
-            <h2>Problem Statement</h2>
-            <p>Given climate reports such as temperature and humidity, can we predict the electricty load, or how much electricity is used in the city of New Hampshire? We will see which regression methods or worth trying and which features contribute most to the phenomenon. At a first glance, we might hypothesize that temperature and time of day might increase electricity load. After all, people tend to use air conditioning in high temperature and start their personal devices as soon as they get home from work (usually 5PM).
-                We'll use cross validation to check our guesses and compare our linear regression. More importantly, our discoveries will help guage proper factors in determining electricity allocation for electrical and civil engineers and when to buy and sell electricity for personal traders. After all, trading electricity can serve to be quite a lucrative occupation.</p>
-            <p>As for technologies we'll use, we'll make use of Python's many machine learning libraries for regression.</p>
-       <div class="center-image">
-    <img src="https://raw.githubusercontent.com/JesseLoi/my_page/main/Elec_Sum_stats.png" alt="Description of image" />
-</div>
-        </section>
-        <section id="section2">
-            <h2>Methodology</h2>
-            <p>Find the data at https://www.iso-ne.com/isoexpress/web/reports/load-and-demand/-/tree/whlsecost-hourly-newhampshire</p>
-            <p>We'll start with some exploratory data analysis to see some initial trends in the data. We have the following interesting features to inspect: date, time, temperature, and their corresponding transformations.</p>
+  </header>
 
-            <p>Date: naturally, the date, particularly the weekend/weekday distinction, should be a contributor to electricity load. For example, lots of businesses won't be operating during the weekend, lowering power usage.
-             </p>
+  <main id="home" class="shell">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow">Jesse Loi · Data analysis</p>
+        <h1 id="hero-title">Finding the <em>signal</em> in the data.</h1>
+        <p class="intro">I explore real-world questions with data, then turn the analysis into clear, useful stories. This is a home for selected projects and the thinking behind them.</p>
+      </div>
+      <aside class="hero-note">
+        <strong>Curious by nature.</strong>
+        Exploring patterns, testing ideas, and sharing what the numbers can—and can’t—tell us.
+      </aside>
+    </section>
 
-            <p></p>
-            <div class="center-image">
-            <img src="https://raw.githubusercontent.com/JesseLoi/my_page/main/Plots.png"/>
-            </div>
+    <section id="work" class="work" aria-labelledby="work-title">
+      <div class="section-heading">
+        <h2 id="work-title">Selected work</h2>
+        <p>A closer look at a question, the approach, and the findings.</p>
+      </div>
+      <article class="project">
+        <div class="project-copy">
+          <span class="label">Featured project · Regression</span>
+          <h3>Can weather help predict electricity demand?</h3>
+          <p>An exploration of hourly electricity load in New Hampshire: examining how time and weather relate to demand, and comparing regression approaches.</p>
+          <div class="tags" aria-label="Project topics">
+            <span class="tag">Exploratory analysis</span>
+            <span class="tag">Regression</span>
+            <span class="tag">Model evaluation</span>
+          </div>
+          <a class="project-link" href="ElecLoadNH.html">Read the project <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="project-art">
+          <img src="Elec_HR_Load.png" alt="Hourly electricity load visualization from the New Hampshire analysis">
+        </div>
+      </article>
+    </section>
 
+    <section id="about" class="about" aria-labelledby="about-title">
+      <div>
+        <p class="eyebrow">A little about this site</p>
+        <h2 id="about-title">Analysis, with the reasoning included.</h2>
+      </div>
+      <div class="about-copy">
+        <p>I’m Jesse. I use this portfolio to share data projects—from the initial question and exploration through to the results and their limitations.</p>
+        <p>The work here is evolving. I’m revisiting older projects and adding clearer explanations, reproducible details, and new analyses over time.</p>
+        <p>Want to see the files and project history? <a href="https://github.com/JesseLoi/my_page">Browse this site’s repository on GitHub ↗</a></p>
+      </div>
+    </section>
+  </main>
 
-            
-        </section>
-        <section id="section3">
-            <h2>Interesting Results</h2>
-            <p>Unsurprisingly, it was a "black box" regression method, the Random Forest method, which performed best. Minimizing mean-squared error the most among the different methodologies.</p>
-            <p><b>However</b>, not all is lost. Our linear regression, with its many different features, arrived surprisingly close  to the mean-squared error. Even better, such results performed significantly better than other linear regressions that used far more features. This is keeping in mind that the phenomena we were attempting to predict was a non-linear phenomena (electricity usage).</p>
-            <p>The lesson to take away here is that, with enough crafty transformations, we can linearize phenomena that is usually non-linear. While it might be better at regression than methods such as random forests, this allows us to have some more oversight over the regression formula than we would with a machine-learning method such as random forest.</p>
-            <p>Of course, this isn't anything too new. This was already discussed in Tim Hesterberg's work on regression in electricity load[A REGRESSION-BASED APPROACH TO SHORT-TERM SYSTEM LOAD FORECASTING 1990]</p>
-        </section>
-        
-    </main>
-    <footer>
-        &copy; 2024 Jesse Loi
-    </footer>
+  <footer class="shell">
+    <span>© 2026 Jesse Loi</span>
+    <a href="#home">Back to top ↑</a>
+  </footer>
 </body>
 </html>
