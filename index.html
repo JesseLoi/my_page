@@ -1,93 +1,257 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jesse Loi</title>
-    <style>
-                .center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-       header {
-            background-color: #333;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-            margin-bottom: 2rem; /* Add margin-bottom to header */
-        }
-        nav {
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            background-color: #444;
-        }
-        nav a {
-            color: white;
-            display: inline-block;
-            padding: 1rem;
-            text-decoration: none;
-        }
-        nav a:hover {
-            background-color: #555;
-        }
-        main {
-            padding: 2rem;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f2ec">
+  <meta name="description" content="Jesse Loi's portfolio of data analysis projects, experiments, and findings.">
+  <title>Jesse Loi — Data analysis portfolio</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f4f2ec;
+      --ink: #202820;
+      --muted: #657067;
+      --line: #d8d9ce;
+      --green: #245c45;
+      --lime: #d9e86a;
+      --white: #fffefa;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    a:focus-visible { outline: 3px solid #8a9b29; outline-offset: 4px; }
+    .shell { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+    .topbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+    }
+    .wordmark { font-weight: 700; letter-spacing: -.04em; text-decoration: none; }
+    .nav { display: flex; gap: 30px; align-items: center; font-size: .88rem; }
+    .nav a { text-decoration: none; color: var(--muted); }
+    .nav a:hover { color: var(--ink); }
+    .nav .github-link { color: var(--green); font-weight: 700; }
+    .hero {
+      padding: clamp(72px, 12vw, 142px) 0 94px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 210px;
+      gap: 36px;
+      align-items: end;
+    }
+    .eyebrow, .label {
+      color: var(--green);
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    h1 {
+      max-width: 760px;
+      margin: 20px 0 22px;
+      font-family: var(--serif);
+      font-size: clamp(3.35rem, 8.5vw, 7.3rem);
+      font-weight: 400;
+      letter-spacing: -.075em;
+      line-height: .94;
+    }
+    h1 em { color: var(--green); font-weight: 400; }
+    .intro { max-width: 560px; margin: 0; color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.22rem); line-height: 1.75; }
+    .hero-note {
+      border-left: 1px solid var(--line);
+      padding: 8px 0 8px 22px;
+      color: var(--muted);
+      font-size: .85rem;
+      line-height: 1.65;
+    }
+    .hero-note strong { display: block; color: var(--ink); font-size: .95rem; margin-bottom: 6px; }
+    .work { border-top: 1px solid var(--ink); padding-top: 22px; }
+    .section-heading { display: flex; justify-content: space-between; gap: 20px; align-items: baseline; margin-bottom: 28px; }
+    .section-heading h2 { margin: 0; font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; letter-spacing: -.05em; }
+    .section-heading p { margin: 0; color: var(--muted); font-size: .88rem; }
+    .section-heading a { color: var(--green); font-weight: 700; text-decoration: none; font-size: .88rem; }
+    .section-heading a:hover { text-decoration: underline; }
+    .project-stack { display: grid; gap: 28px; }
+    .project {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 390px;
+      background: var(--green);
+      color: var(--white);
+      overflow: hidden;
+    }
+    .project.secondary {
+      background: var(--white);
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+    .project-copy { padding: clamp(28px, 5vw, 58px); display: flex; flex-direction: column; align-items: flex-start; }
+    .project .label { color: var(--lime); }
+    .project.secondary .label { color: var(--green); }
+    .project h3 { margin: 22px 0 16px; max-width: 430px; font-family: var(--serif); font-size: clamp(2rem, 4.5vw, 3.35rem); font-weight: 400; letter-spacing: -.055em; line-height: 1.04; }
+    .project-copy > p { max-width: 420px; margin: 0; color: #d1ded4; line-height: 1.7; }
+    .project.secondary .project-copy > p { color: var(--muted); }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 25px 0 32px; }
+    .tag { border: 1px solid #6b8b77; border-radius: 999px; padding: 7px 11px; color: #e0e9df; font-size: .75rem; }
+    .project.secondary .tag { border-color: var(--line); color: var(--muted); }
+    .project-link { margin-top: auto; display: inline-flex; gap: 12px; align-items: center; padding-bottom: 5px; border-bottom: 1px solid var(--lime); color: var(--lime); font-size: .9rem; font-weight: 700; text-decoration: none; }
+    .project.secondary .project-link { border-bottom-color: var(--green); color: var(--green); }
+    .project-link:hover { gap: 17px; }
+    .project-art { position: relative; min-height: 320px; background: #e3e7d8; overflow: hidden; }
+    .project-art img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; }
+    .project-art::after { content: ""; position: absolute; inset: 55% 0 0; background: linear-gradient(transparent, rgba(20, 45, 32, .35)); pointer-events: none; }
+    .project-summary-panel {
+      background: #ebe9df;
+      padding: clamp(28px, 5vw, 48px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+      border-left: 1px solid var(--line);
+    }
+    .stat-block { border-left: 2px solid var(--green); padding-left: 16px; }
+    .stat-block strong { display: block; font-family: var(--serif); font-size: 1.9rem; font-weight: 400; color: var(--ink); letter-spacing: -.04em; }
+    .stat-block span { font-size: .84rem; color: var(--muted); line-height: 1.5; }
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 50px;
+      padding: 96px 0 105px;
+      border-bottom: 1px solid var(--line);
+    }
+    .about h2 { margin: 12px 0 0; font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; letter-spacing: -.05em; }
+    .about-copy { max-width: 590px; color: var(--muted); line-height: 1.8; }
+    .about-copy p { margin: 0 0 16px; }
+    .about-copy p:last-child { margin-bottom: 0; }
+    footer { display: flex; justify-content: space-between; gap: 20px; padding: 24px 0 30px; color: var(--muted); font-size: .82rem; }
+    footer a { color: var(--green); font-weight: 700; text-decoration: none; }
+    @media (max-width: 700px) {
+      .shell { width: min(100% - 36px, 560px); }
+      .topbar { min-height: 66px; }
+      .nav { gap: 17px; font-size: .82rem; }
+      .hero { grid-template-columns: 1fr; padding: 78px 0 72px; gap: 30px; }
+      .hero-note { max-width: 320px; }
+      .section-heading { align-items: flex-start; flex-direction: column; gap: 8px; }
+      .project { grid-template-columns: 1fr; }
+      .project-art { min-height: 270px; grid-row: 1; }
+      .project-summary-panel { border-left: 0; border-top: 1px solid var(--line); }
+      .about { grid-template-columns: 1fr; gap: 20px; padding: 70px 0; }
+    }
+    @media (max-width: 420px) {
+      .nav { gap: 12px; }
+      .nav a { font-size: .77rem; }
+      footer { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Jesse Loi: Data Analyst</h1>
-    </header>
-    <nav>
-        <a href="#section1">Featured Project</a>
-        <a href="#section2">About Me</a>
-        <a href="#section3">Other Projects and Skills</a>
+  <header class="shell topbar">
+    <a class="wordmark" href="#home" aria-label="Jesse Loi, home">JL<span aria-hidden="true">.</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="projects/">Projects</a>
+      <a href="#about">About</a>
+      <a class="github-link" href="https://github.com/JesseLoi">GitHub ↗</a>
     </nav>
-    <main>
-         <div class="center-image">
-        
-         </div>
-        
-        <section id="section1">
-            <h2>Featured Project: Regression and Electricity Load</h2>
-            <p>Find my regression project <a href="https://jesseloi.github.io/my_page/ElecLoadNH.html">here</a>.</p>
-       <div class="center-image">
-   <img src="https://raw.githubusercontent.com/JesseLoi/my_page/main/NH_City.jpg" width="270" height="200" class="center"/>
-</div>
-        </section>
-        <section id="section2">
-            <h2>About Me</h2>
-           
-            <p>I'm a master's student in data science at Seattle University. My interests are in causal inference, feature selection, and data ethics.</p>
-           
+  </header>
 
-            
-        </section>
-        <section id="section3">
-            <h2>Other Projects and Skills</h2>
-            <p>Find some of my other projects listed below. Take a look at the glossary for some of the skills that I've worked on.</p>
-        </section>
-        
-    </main>
-    <footer>
-    </footer>
+  <main id="home" class="shell">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow">Jesse Loi · Data analysis</p>
+        <h1 id="hero-title">Finding the <em>signal</em> in the data.</h1>
+        <p class="intro">I explore real-world questions with data, then turn the analysis into clear, useful stories. This is a home for selected projects and the thinking behind them.</p>
+      </div>
+      <aside class="hero-note">
+        <strong>Curious by nature.</strong>
+        Exploring patterns, testing ideas, and sharing what the numbers can—and can’t—tell us.
+      </aside>
+    </section>
+
+    <section id="work" class="work" aria-labelledby="work-title">
+      <div class="section-heading">
+        <div>
+          <h2 id="work-title">Selected work</h2>
+          <p>A closer look at a question, the approach, and the findings.</p>
+        </div>
+        <a href="projects/">Browse all projects →</a>
+      </div>
+
+      <div class="project-stack">
+        <article class="project">
+          <div class="project-copy">
+            <span class="label">Featured project · Educational Data Science</span>
+            <h3>Mercer Island School District</h3>
+            <p>Longitudinal analysis of standardized assessments, attendance, and academic outcomes across K–12 student cohorts.</p>
+            <div class="tags" aria-label="Project topics">
+              <span class="tag">Longitudinal analysis</span>
+              <span class="tag">Education data</span>
+              <span class="tag">Python &amp; SQL</span>
+            </div>
+            <a class="project-link" href="projects/Mercer_Island_School_District/">Read the case study <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="project-summary-panel" aria-label="Project highlights">
+            <div class="stat-block">
+              <strong>~4,000 students</strong>
+              <span>Multi-year records spanning SBAC, i-Ready, CogAT, grades, and attendance.</span>
+            </div>
+            <div class="stat-block">
+              <strong>6-month engagement</strong>
+              <span>Collaborated with district stakeholders to surface actionable student-support insights.</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project secondary">
+          <div class="project-copy">
+            <span class="label">Regression</span>
+            <h3>Can weather help predict electricity demand?</h3>
+            <p>An exploration of hourly electricity load in New Hampshire: examining how time and weather relate to demand, and comparing regression approaches.</p>
+            <div class="tags" aria-label="Project topics">
+              <span class="tag">Exploratory analysis</span>
+              <span class="tag">Regression</span>
+              <span class="tag">Model evaluation</span>
+            </div>
+            <a class="project-link" href="ElecLoadNH.html">Read the project <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="project-art">
+            <img src="Elec_HR_Load.png" alt="Hourly electricity load visualization from the New Hampshire analysis">
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="about" aria-labelledby="about-title">
+      <div>
+        <p class="eyebrow">A little about this site</p>
+        <h2 id="about-title">Analysis, with the reasoning included.</h2>
+      </div>
+      <div class="about-copy">
+        <p>I’m Jesse. I use this portfolio to share data projects—from the initial question and exploration through to the results and their limitations.</p>
+        <p>The work here is evolving. I’m revisiting older projects and adding clearer explanations, reproducible details, and new analyses over time.</p>
+        <p>Want to see the files and project history? <a href="https://github.com/JesseLoi/my_page">Browse this site’s repository on GitHub ↗</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell">
+    <span>© 2026 Jesse Loi</span>
+    <a href="#home">Back to top ↑</a>
+  </footer>
 </body>
 </html>
