@@ -81,6 +81,9 @@
     .section-heading { display: flex; justify-content: space-between; gap: 20px; align-items: baseline; margin-bottom: 28px; }
     .section-heading h2 { margin: 0; font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; letter-spacing: -.05em; }
     .section-heading p { margin: 0; color: var(--muted); font-size: .88rem; }
+    .section-heading a { color: var(--green); font-weight: 700; text-decoration: none; font-size: .88rem; }
+    .section-heading a:hover { text-decoration: underline; }
+    .project-stack { display: grid; gap: 28px; }
     .project {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -89,17 +92,38 @@
       color: var(--white);
       overflow: hidden;
     }
+    .project.secondary {
+      background: var(--white);
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
     .project-copy { padding: clamp(28px, 5vw, 58px); display: flex; flex-direction: column; align-items: flex-start; }
     .project .label { color: var(--lime); }
-    .project h3 { margin: 22px 0 16px; max-width: 430px; font-family: var(--serif); font-size: clamp(2rem, 4.5vw, 3.65rem); font-weight: 400; letter-spacing: -.055em; line-height: 1.04; }
+    .project.secondary .label { color: var(--green); }
+    .project h3 { margin: 22px 0 16px; max-width: 430px; font-family: var(--serif); font-size: clamp(2rem, 4.5vw, 3.35rem); font-weight: 400; letter-spacing: -.055em; line-height: 1.04; }
     .project-copy > p { max-width: 420px; margin: 0; color: #d1ded4; line-height: 1.7; }
+    .project.secondary .project-copy > p { color: var(--muted); }
     .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 25px 0 32px; }
     .tag { border: 1px solid #6b8b77; border-radius: 999px; padding: 7px 11px; color: #e0e9df; font-size: .75rem; }
+    .project.secondary .tag { border-color: var(--line); color: var(--muted); }
     .project-link { margin-top: auto; display: inline-flex; gap: 12px; align-items: center; padding-bottom: 5px; border-bottom: 1px solid var(--lime); color: var(--lime); font-size: .9rem; font-weight: 700; text-decoration: none; }
+    .project.secondary .project-link { border-bottom-color: var(--green); color: var(--green); }
     .project-link:hover { gap: 17px; }
     .project-art { position: relative; min-height: 320px; background: #e3e7d8; overflow: hidden; }
     .project-art img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; }
     .project-art::after { content: ""; position: absolute; inset: 55% 0 0; background: linear-gradient(transparent, rgba(20, 45, 32, .35)); pointer-events: none; }
+    .project-summary-panel {
+      background: #ebe9df;
+      padding: clamp(28px, 5vw, 48px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+      border-left: 1px solid var(--line);
+    }
+    .stat-block { border-left: 2px solid var(--green); padding-left: 16px; }
+    .stat-block strong { display: block; font-family: var(--serif); font-size: 1.9rem; font-weight: 400; color: var(--ink); letter-spacing: -.04em; }
+    .stat-block span { font-size: .84rem; color: var(--muted); line-height: 1.5; }
     .about {
       display: grid;
       grid-template-columns: 1fr 1.2fr;
@@ -122,6 +146,7 @@
       .section-heading { align-items: flex-start; flex-direction: column; gap: 8px; }
       .project { grid-template-columns: 1fr; }
       .project-art { min-height: 270px; grid-row: 1; }
+      .project-summary-panel { border-left: 0; border-top: 1px solid var(--line); }
       .about { grid-template-columns: 1fr; gap: 20px; padding: 70px 0; }
     }
     @media (max-width: 420px) {
@@ -139,7 +164,7 @@
   <header class="shell topbar">
     <a class="wordmark" href="#home" aria-label="Jesse Loi, home">JL<span aria-hidden="true">.</span></a>
     <nav class="nav" aria-label="Main navigation">
-      <a href="#work">Selected work</a>
+      <a href="projects/">Projects</a>
       <a href="#about">About</a>
       <a class="github-link" href="https://github.com/JesseLoi">GitHub ↗</a>
     </nav>
@@ -160,25 +185,55 @@
 
     <section id="work" class="work" aria-labelledby="work-title">
       <div class="section-heading">
-        <h2 id="work-title">Selected work</h2>
-        <p>A closer look at a question, the approach, and the findings.</p>
+        <div>
+          <h2 id="work-title">Selected work</h2>
+          <p>A closer look at a question, the approach, and the findings.</p>
+        </div>
+        <a href="projects/">Browse all projects →</a>
       </div>
-      <article class="project">
-        <div class="project-copy">
-          <span class="label">Featured project · Regression</span>
-          <h3>Can weather help predict electricity demand?</h3>
-          <p>An exploration of hourly electricity load in New Hampshire: examining how time and weather relate to demand, and comparing regression approaches.</p>
-          <div class="tags" aria-label="Project topics">
-            <span class="tag">Exploratory analysis</span>
-            <span class="tag">Regression</span>
-            <span class="tag">Model evaluation</span>
+
+      <div class="project-stack">
+        <article class="project">
+          <div class="project-copy">
+            <span class="label">Featured project · Educational Data Science</span>
+            <h3>Mercer Island School District</h3>
+            <p>Longitudinal analysis of standardized assessments, attendance, and academic outcomes across K–12 student cohorts.</p>
+            <div class="tags" aria-label="Project topics">
+              <span class="tag">Longitudinal analysis</span>
+              <span class="tag">Education data</span>
+              <span class="tag">Python &amp; SQL</span>
+            </div>
+            <a class="project-link" href="projects/Mercer_Island_School_District/">Read the case study <span aria-hidden="true">→</span></a>
           </div>
-          <a class="project-link" href="ElecLoadNH.html">Read the project <span aria-hidden="true">→</span></a>
-        </div>
-        <div class="project-art">
-          <img src="Elec_HR_Load.png" alt="Hourly electricity load visualization from the New Hampshire analysis">
-        </div>
-      </article>
+          <div class="project-summary-panel" aria-label="Project highlights">
+            <div class="stat-block">
+              <strong>~4,000 students</strong>
+              <span>Multi-year records spanning SBAC, i-Ready, CogAT, grades, and attendance.</span>
+            </div>
+            <div class="stat-block">
+              <strong>6-month engagement</strong>
+              <span>Collaborated with district stakeholders to surface actionable student-support insights.</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project secondary">
+          <div class="project-copy">
+            <span class="label">Regression</span>
+            <h3>Can weather help predict electricity demand?</h3>
+            <p>An exploration of hourly electricity load in New Hampshire: examining how time and weather relate to demand, and comparing regression approaches.</p>
+            <div class="tags" aria-label="Project topics">
+              <span class="tag">Exploratory analysis</span>
+              <span class="tag">Regression</span>
+              <span class="tag">Model evaluation</span>
+            </div>
+            <a class="project-link" href="ElecLoadNH.html">Read the project <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="project-art">
+            <img src="Elec_HR_Load.png" alt="Hourly electricity load visualization from the New Hampshire analysis">
+          </div>
+        </article>
+      </div>
     </section>
 
     <section id="about" class="about" aria-labelledby="about-title">

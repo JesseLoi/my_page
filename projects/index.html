@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f2ec">
+  <meta name="description" content="All data science and analysis projects by Jesse Loi.">
+  <title>Projects — Jesse Loi</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f4f2ec;
+      --ink: #202820;
+      --muted: #657067;
+      --line: #d8d9ce;
+      --green: #245c45;
+      --white: #fffefa;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    a:focus-visible { outline: 3px solid #8a9b29; outline-offset: 4px; }
+    .shell { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+    .topbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+    }
+    .wordmark { font-weight: 700; letter-spacing: -.04em; text-decoration: none; }
+    .nav { display: flex; gap: 30px; align-items: center; font-size: .88rem; }
+    .nav a { text-decoration: none; color: var(--muted); }
+    .nav a:hover, .nav a[aria-current="page"] { color: var(--ink); font-weight: 700; }
+    .nav .github-link { color: var(--green); font-weight: 700; }
+
+    .page-header { padding: 64px 0 48px; border-bottom: 1px solid var(--ink); }
+    .eyebrow {
+      color: var(--green);
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin: 0 0 14px;
+    }
+    h1 {
+      margin: 0 0 16px;
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 6vw, 4.6rem);
+      font-weight: 400;
+      letter-spacing: -.06em;
+      line-height: .98;
+    }
+    .page-header p { max-width: 580px; margin: 0; color: var(--muted); font-size: 1.08rem; line-height: 1.7; }
+
+    .project-list { padding: 12px 0 80px; }
+    .project-row {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr) auto;
+      gap: 28px;
+      align-items: baseline;
+      padding: 34px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .project-meta { font-size: .82rem; color: var(--muted); line-height: 1.6; }
+    .project-meta strong { display: block; color: var(--green); text-transform: uppercase; letter-spacing: .1em; font-size: .72rem; }
+    .project-row h2 {
+      margin: 0 0 10px;
+      font-family: var(--serif);
+      font-size: clamp(1.55rem, 3vw, 2.15rem);
+      font-weight: 400;
+      letter-spacing: -.04em;
+    }
+    .project-row h2 a { text-decoration: none; }
+    .project-row h2 a:hover { color: var(--green); }
+    .project-row p { margin: 0 0 14px; max-width: 580px; color: var(--muted); line-height: 1.65; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { border: 1px solid var(--line); border-radius: 999px; padding: 5px 10px; color: var(--muted); font-size: .74rem; }
+    .row-link { color: var(--green); font-weight: 700; font-size: .88rem; text-decoration: none; white-space: nowrap; }
+    .row-link:hover { text-decoration: underline; }
+
+    footer { display: flex; justify-content: space-between; gap: 20px; padding: 24px 0 30px; color: var(--muted); font-size: .82rem; }
+    footer a { color: var(--green); font-weight: 700; text-decoration: none; }
+
+    @media (max-width: 760px) {
+      .project-row { grid-template-columns: 1fr; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="shell topbar">
+    <a class="wordmark" href="../" aria-label="Jesse Loi, home">JL<span aria-hidden="true">.</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="./" aria-current="page">Projects</a>
+      <a href="../#about">About</a>
+      <a class="github-link" href="https://github.com/JesseLoi">GitHub ↗</a>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <section class="page-header">
+      <p class="eyebrow">Archive &amp; Case Studies</p>
+      <h1>All projects</h1>
+      <p>Explorations in educational analytics, statistical modeling, and data visualization.</p>
+    </section>
+
+    <section class="project-list" aria-label="Project list">
+      <article class="project-row">
+        <div class="project-meta">
+          <strong>2026 · Capstone</strong>
+          Mercer Island School District
+        </div>
+        <div>
+          <h2><a href="Mercer_Island_School_District/">Longitudinal Analysis of Student Outcomes &amp; Attendance</a></h2>
+          <p>Analyzed multi-year standardized assessment scores (SBAC, i-Ready, CogAT), attendance records, demographics, and grades across ~4,000 K–12 students to identify academic trajectories and support opportunities.</p>
+          <div class="tags">
+            <span class="tag">Longitudinal data</span>
+            <span class="tag">Python</span>
+            <span class="tag">Educational analytics</span>
+          </div>
+        </div>
+        <a class="row-link" href="Mercer_Island_School_District/">Read case study →</a>
+      </article>
+
+      <article class="project-row">
+        <div class="project-meta">
+          <strong>Regression</strong>
+          Energy &amp; Weather
+        </div>
+        <div>
+          <h2><a href="../ElecLoadNH.html">Can weather help predict electricity demand?</a></h2>
+          <p>Examining how hourly temperature, humidity, and calendar patterns drive electricity load in New Hampshire across multiple regression models.</p>
+          <div class="tags">
+            <span class="tag">Exploratory analysis</span>
+            <span class="tag">Regression</span>
+            <span class="tag">Model evaluation</span>
+          </div>
+        </div>
+        <a class="row-link" href="../ElecLoadNH.html">Read project →</a>
+      </article>
+    </section>
+  </main>
+
+  <footer class="shell">
+    <span>© 2026 Jesse Loi</span>
+    <a href="../">← Back to home</a>
+  </footer>
+</body>
+</html>
